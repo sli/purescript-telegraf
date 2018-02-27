@@ -19,6 +19,10 @@ exports.hearsImpl = function (bot, s, cb) {
   bot.hears(s, cb)
 }
 
+exports.commandImp = function (bot, c, cb) {
+  bot.command(c, cb)
+}
+
 exports.replyImpl = function (s, ctx) {
   return ctx.reply(s)
 }
@@ -41,7 +45,7 @@ exports.getChatImpl = function (just, nothing, ctx) {
     title: ctx.chat.title ? just(String(ctx.chat.title)) : nothing,
     username: ctx.chat.username ? just(String(ctx.chat.username)) : nothing,
     first_name: ctx.chat.first_name ? just(String(ctx.chat.first_name)) : nothing,
-    last_name: ctx.chat.last_name ? just(String(ctx.chat.last_name)) : nothing,
+    last_name: ctx.chat.last_name ? just(String(ctx.chat.last_name)) : nothing
   }
 }
 

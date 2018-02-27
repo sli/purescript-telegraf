@@ -31,7 +31,16 @@ hears s respond = do
   bot <- asks _.bot
   liftEff $ runEffFn3 hearsImpl bot s (mkCallback respond)
 
+-- | Listen to commands
+command :: forall e. String -> WithContext (telegraf :: TELEGRAF | e) Unit -> WithTelegraf (telegraf :: TELEGRAF | e) Unit
+command c respond = do
+  bot <- asks _.bot
+  liftEff $ runEffFn3 commandImpl bot c (mkCallback respond)
+
 foreign import hearsImpl :: forall e. EffFn3 (telegraf :: TELEGRAF | e) Bot String
+  (EffFn1 (telegraf :: TELEGRAF | e) Context Unit) Unit
+
+foreign import commandImpl :: forall e. EffFn3 (telegraf :: TELEGRAF | e) Bot String
   (EffFn1 (telegraf :: TELEGRAF | e) Context Unit) Unit
 
 -- | Reply with a text message.
