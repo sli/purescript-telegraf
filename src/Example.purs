@@ -15,6 +15,6 @@ main = launchAff_ $ runWithTelegraf config do
     user <- getFrom
     reply $ "Hey " <> user.first_name
     reply "What's up?"
-  command "/start" do
+  command "start" do
     user <- getFrom
     reply $ "Welcome to real world, " <> user.first_name
