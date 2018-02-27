@@ -4,7 +4,7 @@ import Prelude
 
 import Control.Monad.Aff (launchAff_)
 import Control.Monad.Eff (Eff)
-import Telegraf (Configuration(..), TELEGRAF, getFrom, hears, reply, runWithTelegraf)
+import Telegraf (Configuration(..), TELEGRAF, getFrom, hears, command, reply, runWithTelegraf)
 
 config :: Configuration
 config = Polling { token: "My Telegram token from BotFather" }
@@ -15,3 +15,6 @@ main = launchAff_ $ runWithTelegraf config do
     user <- getFrom
     reply $ "Hey " <> user.first_name
     reply "What's up?"
+  command "/start" do
+    user <- getFrom
+    reply $ "Welcome to real world, " <> user.first_name

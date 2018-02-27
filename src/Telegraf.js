@@ -19,7 +19,7 @@ exports.hearsImpl = function (bot, s, cb) {
   bot.hears(s, cb)
 }
 
-exports.commandImp = function (bot, c, cb) {
+exports.commandImpl = function (bot, c, cb) {
   bot.command(c, cb)
 }
 
